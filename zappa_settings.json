@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "app_function": "tiahold.app", 
+        "s3_bucket": "zappa-ye2uzio0m",
+        "domain": "tiahold.com",
+        "lets_encrypt_key": "../account.key",
+        "lets_encrypt_expression": "rate(15 days)",
+        "timeout_seconds": 60
+    }
+}
