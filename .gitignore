@@ -1,3 +1,7 @@
+# just in case account.key is accidentally moved into project directory...
+account.key
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
