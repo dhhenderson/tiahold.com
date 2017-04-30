@@ -5,7 +5,6 @@ import requests
 app = Flask(__name__)
 Bootstrap(app)
 
-# TODO: lambda throttling, notifications on errors
 # TODO: make url a config setting; does it change? if so, how to update? dynamoDB? tests
 
 @app.route('/_get_timestamp')
