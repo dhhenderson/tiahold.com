@@ -3,8 +3,6 @@
         "app_function": "tiahold.app", 
         "s3_bucket": "zappa-ye2uzio0m",
         "domain": "www.tiahold.com",
-        "lets_encrypt_key": "s3://zappa-le/account.key",
-        "lets_encrypt_expression": "rate(15 days)",
-        "timeout_seconds": 60
+        "certificate_arn": "arn:aws:acm:us-east-1:956074176111:certificate/5ae75d5f-3f53-4a19-bc28-0337ddaa0547",
     }
 }
