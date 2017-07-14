@@ -3,14 +3,17 @@ from flask_bootstrap import Bootstrap
 import requests
 
 app = Flask(__name__)
-Bootstrap(app)
+app.config.from_object('default_settings')
+app.config.from_envvar('TIAHOLD_SETTINGS', silent=True)
 
-# TODO: make url a config setting; does it change? if so, how to update? dynamoDB? tests
+#print(app.config['DEBUG'])
+
+Bootstrap(app)
 
 @app.route('/_get_timestamp')
 def get_timestamp():
     try:
-        r = requests.get('https://d7xrbctt1l.execute-api.us-east-1.amazonaws.com/Prod/', timeout=2)
+        r = requests.get(app.config['TIMESTAMP_URL'], timeout=2)
         data = json.loads(r.text)
         app.logger.info(r.text)
         return data['timestamp']
