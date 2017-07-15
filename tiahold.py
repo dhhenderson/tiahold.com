@@ -27,6 +27,17 @@ def get_timestamp():
 def index():
     return render_template('index.html')
 
+@app.route('/favs')
+def favs():
+    favs = [
+        {'name': 'bloom', 'url': 'https://www.bloomberg.com/'},
+        {'name': 'cnbc', 'url': 'http://www.cnbc.com/'},
+        {'name': 'drudge', 'url': 'http://www.drudgereport.com'},
+        {'name': 'wp', 'url': 'https://www.washingtonpost.com'},
+        {'name': 'nyt', 'url': 'https://www.nytimes.com/'}
+    ]
+    return render_template('favs.html', favs=favs)
+
 # We only need this for local development.
 if __name__ == '__main__':
     app.run()
