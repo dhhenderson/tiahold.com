@@ -31,6 +31,7 @@ def index():
 def favs():
     favs = [
         {'name': 'bloom', 'url': 'https://www.bloomberg.com/'},
+        {'name': 'bbc', 'url': 'http://www.bbc.com/news'},
         {'name': 'cnbc', 'url': 'http://www.cnbc.com/'},
         {'name': 'drudge', 'url': 'http://www.drudgereport.com'},
         {'name': 'wp', 'url': 'https://www.washingtonpost.com'},
