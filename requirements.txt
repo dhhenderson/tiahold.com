@@ -2,3 +2,4 @@ zappa
 Flask
 Flask-Bootstrap
 requests
+boto3

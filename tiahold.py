@@ -1,15 +1,25 @@
+import boto3
+
 from flask import Flask, render_template, json
 from flask_bootstrap import Bootstrap
+
 import requests
 
 app = Flask(__name__)
 app.config.from_object('default_settings')
 app.config.from_envvar('TIAHOLD_SETTINGS', silent=True)
-
 #print(app.config['DEBUG'])
 
 Bootstrap(app)
 
+# initialize db
+if app.config['DYNAMO_LOCAL']:
+    dynamodb = boto3.resource('dynamodb', endpoint_url=app.config['DYNAMO_LOCAL_URL'])
+else:
+    dynamodb = boto3.resource('dynamodb')
+#print "DYNAMO_LOCAL = %s" % (app.config['DYNAMO_LOCAL'])
+
+# timestamp ajax callback
 @app.route('/_get_timestamp')
 def get_timestamp():
     try:
@@ -29,6 +39,52 @@ def index():
 
 @app.route('/favs')
 def favs():
+    table = dynamodb.Table('favs')
+    response = table.scan()
+    favs = response['Items']
+    return render_template('favs.html', favs=favs)
+
+
+@app.cli.command('initdb')
+def initdb_command():
+    print "DYNAMO_LOCAL = %s" % (app.config['DYNAMO_LOCAL'])
+    table = dynamodb.create_table(
+        TableName = 'favs',
+        KeySchema = [
+            {
+                'AttributeName': 'name',
+                'KeyType': 'HASH'
+            }
+        ],
+        AttributeDefinitions = [
+            {
+                'AttributeName': 'name',
+                'AttributeType': 'S'
+            }
+        ],
+        ProvisionedThroughput = {
+            'ReadCapacityUnits': 5,
+            'WriteCapacityUnits': 5
+        }
+    )
+
+    # Wait until the table exists.
+    table.meta.client.get_waiter('table_exists').wait(TableName='favs')
+
+    table.put_item(
+        Item = {
+            'name': 'bloom',
+            'url': 'https://www.bloomberg.com',
+        }
+    )
+
+    print(table.item_count)
+
+    response = table.scan()
+    favs = response['Items']
+    print(favs)
+
+'''
     favs = [
         {'name': 'bloom', 'url': 'https://www.bloomberg.com/'},
         {'name': 'bbc', 'url': 'http://www.bbc.com/news'},
@@ -37,8 +93,8 @@ def favs():
         {'name': 'wp', 'url': 'https://www.washingtonpost.com'},
         {'name': 'nyt', 'url': 'https://www.nytimes.com/'}
     ]
-    return render_template('favs.html', favs=favs)
+'''
 
 # We only need this for local development.
-if __name__ == '__main__':
-    app.run()
+#if __name__ == '__main__':
+#    app.run()

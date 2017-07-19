@@ -1,8 +1,11 @@
 {
     "production": {
-        "app_function": "tiahold.app", 
+        "app_function": "tiahold.app",
         "s3_bucket": "zappa-ye2uzio0m",
         "domain": "www.tiahold.com",
         "certificate_arn": "arn:aws:acm:us-east-1:956074176111:certificate/5ae75d5f-3f53-4a19-bc28-0337ddaa0547",
+        "environment_variables": {
+          "TIAHOLD_SETTINGS": "prod_settings.py"
+        }
     }
 }
