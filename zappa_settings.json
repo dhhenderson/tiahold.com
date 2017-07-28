@@ -7,5 +7,6 @@
         "environment_variables": {
           "TIAHOLD_SETTINGS": "prod_settings.py"
         }
+#	"cloudwatch_log_level": INFO
     }
 }

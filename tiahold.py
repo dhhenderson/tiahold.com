@@ -1,3 +1,5 @@
+import logging
+
 import boto3
 
 from flask import Flask, render_template, json
@@ -9,6 +11,9 @@ app = Flask(__name__)
 app.config.from_object('default_settings')
 app.config.from_envvar('TIAHOLD_SETTINGS', silent=True)
 #print(app.config['DEBUG'])
+
+# with this logger, messages flow from lambda to cloudwatch
+logger = logging.getLogger()
 
 Bootstrap(app)
 
@@ -23,9 +28,11 @@ else:
 @app.route('/_get_timestamp')
 def get_timestamp():
     try:
-        r = requests.get(app.config['TIMESTAMP_URL'], timeout=2)
+        r = requests.get(app.config['TIMESTAMP_URL'], timeout=20)
         data = json.loads(r.text)
-        app.logger.info(r.text)
+        logger.info('logger.info ' + r.text) # this shows up in cloudwatch
+        app.logger.info('app.logger.info ' + r.text) # this shows up locally
+        print('print ' + r.text) # this shows up in both but w/o decoration
         return data['timestamp']
     except requests.exceptions.RequestException as e:
         app.logger.error(e)
