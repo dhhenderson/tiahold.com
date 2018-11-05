@@ -21,7 +21,7 @@
   <script type="text/javascript">
   $(document).ready(function() {
       $.ajax({
-          url: "/_get_timestamp"
+          url: "_get_timestamp"
       }).then(function(data) {
          $("p#timestamp").append(data);
       });

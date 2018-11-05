@@ -38,6 +38,8 @@ def get_timestamp():
         app.logger.error(e)
         return 'Timestamp unavailable'
 
+# timestamp does not show up on staging unless end of url has slash. Should '/'
+# redirect to '/index.html'?
 @app.route('/')
 @app.route('/index.html')
 @app.route('/index.htm')
@@ -54,7 +56,7 @@ def favs():
 
 @app.cli.command('initdb')
 def initdb_command():
-    print "DYNAMO_LOCAL = %s" % (app.config['DYNAMO_LOCAL'])
+    print("DYNAMO_LOCAL = %s" % (app.config['DYNAMO_LOCAL']))
     table = dynamodb.create_table(
         TableName = 'favs',
         KeySchema = [
@@ -90,17 +92,6 @@ def initdb_command():
     response = table.scan()
     favs = response['Items']
     print(favs)
-
-'''
-    favs = [
-        {'name': 'bloom', 'url': 'https://www.bloomberg.com/'},
-        {'name': 'bbc', 'url': 'http://www.bbc.com/news'},
-        {'name': 'cnbc', 'url': 'http://www.cnbc.com/'},
-        {'name': 'drudge', 'url': 'http://www.drudgereport.com'},
-        {'name': 'wp', 'url': 'https://www.washingtonpost.com'},
-        {'name': 'nyt', 'url': 'https://www.nytimes.com/'}
-    ]
-'''
 
 # We only need this for local development.
 #if __name__ == '__main__':
