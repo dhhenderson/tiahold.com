@@ -21,6 +21,7 @@ pipenv shell
 ```
 docker run -p 8000:8000 amazon/dynamodb-local
 export FLASK_ENV=development
+export APP_CONFIG_FILE=/path/to/config/development.py
 flask init-db
 python -m pytest -v
 flask run
