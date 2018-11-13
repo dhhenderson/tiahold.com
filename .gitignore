@@ -1,6 +1,7 @@
 # just in case account.key is accidentally moved into project directory...
 account.key
 
+.pytest_cache
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -9,7 +9,7 @@
 
 ## Install
 
-```bash
+```
 git clone https://github.com/dhhenderson/tiahold.com.git
 cd tiahold.com
 pipenv install --three
@@ -20,11 +20,12 @@ pipenv shell
 
 ```
 docker run -p 8000:8000 amazon/dynamodb-local
-export FLASK_APP=tiahold.py
 export FLASK_ENV=development
-flask initdb
+flask init-db
+python -m pytest -v
 flask run
 ```
+* Env vars can be put into .env file and pipenv shell will load
 
 ## Deploy
 
@@ -32,3 +33,8 @@ flask run
 aws configure
 zappa deploy production
 ```
+
+## References
+
+* http://exploreflask.com/en/latest/configuration.html
+* https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure
