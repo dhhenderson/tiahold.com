@@ -13,15 +13,16 @@
 git clone https://github.com/dhhenderson/tiahold.com.git
 cd tiahold.com
 pipenv install --three
-pipenv shell
 ```
 
 ## Local dev
 
 ```
-docker run -p 8000:8000 amazon/dynamodb-local
+pipenv install --dev
+pipenv shell
 export FLASK_ENV=development
 export APP_CONFIG_FILE=/path/to/config/development.py
+docker run -p 8000:8000 amazon/dynamodb-local
 flask init-db
 python -m pytest -v
 flask run
