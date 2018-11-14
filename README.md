@@ -6,6 +6,7 @@
  * pipenv (install w/ pip3 b/c brew points it to python 3.7)
  * awscli (brew)
  * docker for mac (for local dev w/ dynamodb)
+ * https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html
 
 ## Install
 
@@ -22,6 +23,7 @@ pipenv install --dev
 pipenv shell
 export FLASK_ENV=development
 export APP_CONFIG_FILE=/path/to/config/development.py
+./xray_mac -o -n us-east-1
 docker run -p 8000:8000 amazon/dynamodb-local
 flask init-db
 python -m pytest -v

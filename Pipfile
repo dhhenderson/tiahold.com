@@ -9,6 +9,7 @@ requests = "*"
 "boto3" = "*"
 Flask = "*"
 Flask-Bootstrap = "*"
+aws-xray-sdk = "*"
 
 [dev-packages]
 pytest = "*"
