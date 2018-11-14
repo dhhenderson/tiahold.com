@@ -10,7 +10,8 @@
         "profile_name": "default",
         "project_name": "tiahold-com",
         "runtime": "python3.6",
-        "s3_bucket": "zappa-ye2uzio0m"
+        "s3_bucket": "zappa-ye2uzio0m",
+        "xray_tracing": true
     },
     "production": {
         "app_function": "run.app",
@@ -25,6 +26,7 @@
         "profile_name": "default",
         "project_name": "tiahold-com",
         "runtime": "python3.6",
-        "s3_bucket": "zappa-ye2uzio0m"
+        "s3_bucket": "zappa-ye2uzio0m",
+        "xray_tracing": true
     }
 }
