@@ -1,1 +1,1 @@
-XRAY_SERVICE_NAME='tiahold_com_production'
+XRAY_SERVICE_NAME = 'tiahold_com_production'

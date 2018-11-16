@@ -22,12 +22,14 @@ def index():
     # print(current_app.url_map)
     return render_template('views/index.html')
 
+
 @views.route('/favs')
 def favs():
     table = get_db().Table('favs')
     response = table.scan()
     favs = response['Items']
     return render_template('views/favs.html', favs=favs)
+
 
 @views.route('/_get_timestamp')
 def get_timestamp():
@@ -37,9 +39,12 @@ def get_timestamp():
     try:
         r = requests.get(current_app.config['TIMESTAMP_URL'], timeout=20)
         data = json.loads(r.text)
-        logger.info('logger.info ' + r.text)  # This shows up in cloudwatch
-        current_app.logger.info('app.logger.info ' + r.text)  # This shows up locally
-        print('print ' + r.text)  # This shows up in both but w/o decoration
+        # This shows up in cloudwatch
+        logger.info('logger.info ' + r.text)
+        # This shows up locally
+        current_app.logger.info('app.logger.info ' + r.text)
+        # This shows up in both but w/o decoration
+        print('print ' + r.text)
         return data['timestamp']
     except requests.exceptions.RequestException as e:
         logger.error(e)
@@ -49,7 +54,7 @@ def get_timestamp():
 # Ongoing debate over error handler behavior:
 # https://github.com/pallets/flask/issues/2841
 # https://github.com/pallets/flask/issues/2778
-# but using a catch all Exception handler doesn't appear to step on 404 handler.
+# but a catch all Exception handler doesn't appear to step on 404 handler.
 # It does, however, override the DEBUG mode browser stack dump behavior.
 # This dumps the list of handlers and the Execption classes they are mapped to:
 #    print(current_app.error_handler_spec)
@@ -58,9 +63,11 @@ def get_timestamp():
 # def unexpected_error(error):
 #     return 'Internal Server Error', 500
 
+
 @views.app_errorhandler(404)
 def page_not_found(error):
     return render_template('views/404.html'), 404
+
 
 @views.app_errorhandler(500)
 def internal_server_error(error):

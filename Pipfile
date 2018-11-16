@@ -13,6 +13,7 @@ aws-xray-sdk = "*"
 
 [dev-packages]
 pytest = "*"
+"flake8" = "*"
 
 [requires]
 python_version = "3.6"
