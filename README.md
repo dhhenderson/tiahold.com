@@ -6,7 +6,7 @@
  * pipenv (brew)
  * awscli (brew)
  * docker for mac (for local dev w/ dynamodb)
- * # https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html
+ * (skip) https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html
 
 ## Install
 
