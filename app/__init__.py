@@ -19,9 +19,6 @@ def create_app(config_filename=None):
     # Variables defined here will override those in the default configuration
     app.config.from_envvar('APP_CONFIG_FILE')
 
-    # TODO: Override with variables passed in - needed? test overrides?
-    #app.config.from_pyfile(config_filename)
-
     # Commenting out due to https://github.com/aws/aws-xray-sdk-python/issues/2
     # Needed in zappa_settings.json:    "xray_tracing": true
     # xray_recorder.configure(service=app.config['XRAY_SERVICE_NAME'])

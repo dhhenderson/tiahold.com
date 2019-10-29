@@ -10,6 +10,8 @@ def init_app(app):
 
 
 def get_db():
+    print('IS_DYNAMO_LOCAL: ' + str(current_app.config['IS_DYNAMO_LOCAL']))
+
     if 'db' not in g:
         if current_app.config['IS_DYNAMO_LOCAL']:
             g.db = boto3.resource('dynamodb',
