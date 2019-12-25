@@ -2,8 +2,9 @@
 
 ## Prereqs
 
- * pyenv (brew)
- * pipenv (brew)
+ * pyenv (brew) - to divorce from system version; current system is 3.7.3 and
+ doesn't get along with pipenv install; used 3.7.5 global
+ * pipenv (brew) - version used came with 3.7.5
  * awscli (brew)
  * docker for mac (for local dev w/ dynamodb)
  * (skip) https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html
@@ -13,8 +14,8 @@
 ```
 git clone https://github.com/dhhenderson/tiahold.com.git
 cd tiahold.com
-pyenv install 3.7.4
-pyenv local 3.7.4
+# pyenv install 3.7.4 - useless as pipenv ignores .python_version; uses Pipfile
+# pyenv local 3.7.4 - useless as pipenv ignores .python_version; uses Pipfile
 pipenv install
 ```
 
