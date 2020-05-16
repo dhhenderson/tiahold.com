@@ -16,7 +16,7 @@
     "production": {
         "app_function": "run.app",
         "aws_region": "us-east-1",
-        "certificate_arn": "arn:aws:acm:us-east-1:956074176111:certificate/5ae75d5f-3f53-4a19-bc28-0337ddaa0547",
+        "certificate_arn": "arn:aws:acm:us-east-1:956074176111:certificate/33ac875e-7231-4146-a01a-d1e359e5023c",
         "cloudwatch_log_level": "INFO",
         "cloudwatch_metrics_enabled": true,
         "domain": "www.tiahold.com",
